@@ -1,20 +1,20 @@
 // src/main.rs
 
-#![no_std]   // Rule 1: Standard library use nahi karni
-#![no_main]  // Rule 2: Normal 'main' function use nahi karna (Is line ko nahi mitana)
+#![no_std]
+#![no_main]
 
-use core::panic::PanicInfo;
+// Hum apni library (lib.rs) se components import kar rahe hain
+use my_rust_os::services;
 
-/// Yeh function tab call hoga jab hamara OS crash karega.
-#[panic_handler]
-fn panic(_info: &PanicInfo) -> ! {
-    loop {}
-}
-
-/// Yeh hamare Kernel ka asal Entry Point (Darwaza) hai.
-/// Naye Rust Nightly ke rules ke mutabiq hum #[unsafe(no_mangle)] use karenge.
 #[unsafe(no_mangle)]
 pub extern "C" fn _start() -> ! {
-    // OS yahan zinda rahega aur infinite loop mein ghoomta rahega
+    // ---------------------------------------------------------
+    // Yahan DON-OS ka boot sequence start hoga.
+    // Future mein hum yahan likhenge:
+    // services::io_service::init();
+    // services::memory_service::init();
+    // ---------------------------------------------------------
+    
+    // OS ko zinda rakhne ke liye infinite loop
     loop {}
 }
