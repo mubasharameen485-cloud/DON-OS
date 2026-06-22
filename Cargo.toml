@@ -1,6 +1,21 @@
+# Cargo.toml
+
 [package]
 name = "my_rust_os"
 version = "0.1.0"
-edition = "2024"
+edition = "2021"
 
 [dependencies]
+uart_16550 = "0.3.0"
+spin = "0.9.8"
+lazy_static = { version = "1.4.0", features = ["spin_no_std"] }
+
+
+bootloader = "0.9.23"
+
+
+[lib]
+test = false
+
+[package.metadata.bootimage]
+run-args = ["-serial", "stdio"]
